@@ -1,0 +1,102 @@
+.img-logo {
+    width: 60px;
+}
+
+:root {
+    --bg-dark: #0b011d;
+    --bg-card: #160a2c;
+    --accent-cyan: #00f2ff;
+    --accent-purple: #a020f0;
+    --text-gray: #b0b0b0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(11, 1, 29, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Section */
+.hero {
+    padding: 150px 0;
+    background: linear-gradient(rgba(11, 1, 29, 0.6), rgba(11, 1, 29, 0.9)),
+        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+/* Cards Estilizados */
+.game-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-10px);
+}
+
+.card-icon-circle {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    background: linear-gradient(45deg, var(--accent-purple), var(--accent-cyan));
+    border-radius: 50%;
+    margin: 0 auto 15px;
+}
+
+/* Pricing Table */
+.price-box {
+    background: var(--bg-card);
+    border-top: 4px solid var(--accent-purple);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.price-box.featured {
+    border-top-color: var(--accent-cyan);
+    transform: scale(1.05);
+}
+
+footer {
+    background: #05000a;
+    padding: 50px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.game-logo img {
+    width: 65px;
+}
