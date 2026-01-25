@@ -19,6 +19,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /domains/dreamsorcererstudios.com.br/public_html/
+          server-dir: /public_html/
           # ADICIONE ESTA LINHA ABAIXO:
           protocol: ftp
