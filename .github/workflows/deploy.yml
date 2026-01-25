@@ -18,4 +18,6 @@ jobs:
           server: "ftp.dreamsorcererstudios.com.br"
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./ # Envia tudo da raiz
+          local-dir: ./
+          # ADICIONE ESTA LINHA ABAIXO:
+          protocol: ftp
