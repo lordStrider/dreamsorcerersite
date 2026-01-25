@@ -15,7 +15,7 @@ jobs:
       - name: 🚚 Enviar via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: "172.67.204.46"
+          server: "89.117.7.205"
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
