@@ -1,0 +1,32 @@
+:root {
+    --bg-login-first: rgba(230, 227, 227, 0.5);
+    --bg-login-mobi: rgba(230, 227, 227, 0.1);
+}
+body {
+    background: url("../images/background.png") no-repeat;
+    background-size: cover;
+}
+.login-box {
+    background-color: var(--bg-login-first);
+    padding: 5em;
+    border-radius: 2em;
+}
+.login-area {
+    background-color: var(--bg-login-first);
+}
+.btn-login {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+@media screen and  (max-width: 600px) {
+.login-area {
+    background-color: var(--bg-login-mobi);
+}
+.login-box {
+    background-color: var(--bg-login-first);
+    padding: 1.5em;
+    border-radius: 2em;
+}
+}
