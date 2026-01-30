@@ -1,32 +1,221 @@
 :root {
     --bg-login-first: rgba(230, 227, 227, 0.5);
     --bg-login-mobi: rgba(230, 227, 227, 0.1);
+    --bg-bars: #212529;
+    --text-white: #fff;
 }
+
 body {
     background: url("../images/background.png") no-repeat;
     background-size: cover;
+    max-width: 100vw;
 }
+
+#app {
+    height: 100vh;
+    background: url("../images/background.png") no-repeat;
+    background-size: cover;
+}
+
 .login-box {
     background-color: var(--bg-login-first);
     padding: 5em;
     border-radius: 2em;
 }
+
 .login-area {
     background-color: var(--bg-login-first);
 }
+
 .btn-login {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
     font-size: 1.2em;
     text-transform: uppercase;
 }
-@media screen and  (max-width: 600px) {
-.login-area {
-    background-color: var(--bg-login-mobi);
+
+@media screen and (max-width: 600px) {
+    body {
+        position: fixed;
+    }
+
+    .login-area {
+        background-color: var(--bg-login-mobi);
+    }
+
+    .login-box {
+        background-color: var(--bg-login-first);
+        padding: 1.5em;
+        border-radius: 2em;
+    }
+
+    main {
+        height: 100vh;
+        overflow-y: scroll;
+    }
+    .g-4 {
+        margin: 5vh;
+    }
 }
-.login-box {
+
+/* GRID PRINCIPAL */
+.admin-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 64px 1fr;
+    grid-template-areas:
+        "sidebar topbar"
+        "sidebar content";
+    min-height: 100vh;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background: var(--bg-bars);
+    color: var(--text-white);
+    border-right: 2px solid black;
+}
+
+.topbar {
+    grid-area: topbar;
+    background: var(--bg-bars);
+    border-bottom: 1px solid #dee2e6;
+
+    padding: 0 1rem;
+}
+
+.content {
+    grid-area: content;
+    padding: 1.5rem;
     background-color: var(--bg-login-first);
-    padding: 1.5em;
-    border-radius: 2em;
 }
+
+.sidebar .nav-link {
+    color: #adb5bd;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background-color: #343a40;
+    color: var(--text-white);
+}
+
+.topbar {
+    height: 64px;
+}
+
+.topbar h5 {
+    color: white;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+
+    .admin-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 64px 1fr;
+        grid-template-areas:
+            "topbar"
+            "content";
+    }
+
+    .dropdown-menu {
+        background-color: var(--bg-bars);
+        width: 100vw;
+        text-align: right;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}
+
+.dropdown-menu {
+    background-color: var(--bg-bars);
+    transform-origin: top;
+    transform: scaleY(0.9);
+    opacity: 0;
+    min-width: 7rem;
+    transition: all 0.15s ease-out;
+    display: block;
+    /* necessário para animar */
+    pointer-events: none;
+}
+
+.dropdown-menu.show {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dropdown-item {
+    color: var(--text-white);
+}
+
+/* push area */
+.card-preview {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+}
+
+.device {
+    background: #f1f3f5;
+    border-radius: 20px;
+    padding: 14px;
+    padding-top: 5px;
+    margin-bottom: 20px;
+}
+
+.notification {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+}
+
+.notification img {
+    width: 32px;
+    height: 32px;
+}
+
+.notification small {
+    color: #6c757d;
+}
+
+.form-hint {
+    font-size: 13px;
+    color: #6c757d;
+}
+#previewImage {
+    width: 80px;
+    height: auto;
+}
+.device-android {
+    position: absolute;
+    background: url("../images/wire-android.png") no-repeat;
+    background-size: cover;
+    width: 500px;
+    height: 160px;
+}
+.device .small {
+    margin-bottom: 5px;
+    background-color: var(--text-white);
+    width: 120px;
+    height: 25px;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    border: 2px solid silver;
+}
+.visualisacao {
+    display: flex;
+    font-weight: bold;
+    width: 130px;
+    margin: 0 auto;
+    text-transform: uppercase;
 }
