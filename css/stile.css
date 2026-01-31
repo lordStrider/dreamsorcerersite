@@ -8,6 +8,7 @@
     --accent-cyan: #00f2ff;
     --accent-purple: #a020f0;
     --text-gray: #b0b0b0;
+    --bg-box: rgba(8, 8, 8, 0.286);
 }
 
 body {
@@ -26,9 +27,9 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 150px 0;
+    padding: 0px 0;
     background: linear-gradient(rgba(11, 1, 29, 0.6), rgba(11, 1, 29, 0.9)),
-        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        rl('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -193,6 +194,7 @@ footer {
     .text {
         font-size: 11px
     }
+    
 }
 
 /* Outros estilos do seu site podem vir aqui */
@@ -211,6 +213,47 @@ footer {
     text-align: center;
 }
 
-main {
-    padding: 20px;
+.sp-layer  {
+    text-align: center;
+    margin-top: 20%;
+    margin-left: 0 auto;
+    font-size: 2em;
+    width: 100%;
+}
+.sp-layer {
+    width: 50%;
+    word-wrap: break-word;
+    background-color: var(--bg-box);
+    margin-left: 25%;
+}
+.logo-mark {
+    position: absolute;
+    width: 30vw;
+    height: 40px;
+    margin-top: -60vh;
+}
+.logo-mark img{
+    position: absolute;
+    height: 8vh;
+    left: 5px;
+}
+@media only screen and (max-width: 900px) {
+.sp-layer  {
+    text-align: center;
+    margin-top: 30%;
+    margin-left: 0 auto;
+    font-size: 1em;
+    width: 100%;
+}
+.sp-layer span{ 
+    background-color: rgba(0, 0, 0, 0);
+    padding: 2px;
+    
+}
+.sp-layer {
+    width: 70%;
+    word-wrap: break-word;
+    background-color: var(--bg-box);
+    margin-left: 15%;
+} 
 }
