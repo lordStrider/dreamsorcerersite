@@ -41,6 +41,7 @@ body {
 
     .login-area {
         background-color: var(--bg-login-mobi);
+            width: 100vw;
     }
 
     .login-box {
