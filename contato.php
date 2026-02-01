@@ -4,13 +4,18 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 
-// Importação das classes do PHPMailer (Ajuste os caminhos se necessário)
+// Se você usou Composer, este é o caminho padrão:
+require 'vendor/autoload.php'; 
+
+// Caso o autoload não exista, use os caminhos manuais abaixo (comente o de cima):
+/*
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+*/
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-require 'libs/PHPMailer/src/Exception.php';
-require 'libs/PHPMailer/src/PHPMailer.php';
-require 'libs/PHPMailer/src/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
