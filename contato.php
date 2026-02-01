@@ -66,10 +66,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->clearAddresses(); // Limpa o destinatário anterior
         $mail->addAddress($email); // Envia para o e-mail que o usuário digitou no form
         $mail->Subject = "Recebemos sua mensagem - Nome do Seu Site";
-        $mail->Body    = "<h2>Olá, $nome!</h2>
-                          <p>Recebemos seu contato sobre <b>$assunto_form</b>.</p>
-                          <p>Nossa equipe já está analisando e responderemos em breve.</p>
-                          <p>Atenciosamente,<br>Equipe do Site</p>";
+        $mail->Body    = "<div style='background-color: #050111; padding: 40px 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff;'>
+    <div style='max-width: 600px; margin: 0 auto; background-color: #0d0428; border-radius: 10px; overflow: hidden; border: 1px solid #1f144d;'>
+        <div style='padding-left: 25px; background-color: #28116597;'>
+            <img src='images/logo.png' style='height: 60px; vertical-align: middle;'>Dream Sorcerer <span style='color: #00f2ff;'>Studios</span>
+            
+        </div>
+        <div style='padding: 30px; line-height: 1.6;'>
+            <h2 style='color: #00ccff; margin-top: 0; text-transform: capitalize;'>Olá, ' . $nome . '!</h2>
+            <p style='font-size: 16px;'>Recebemos sua mensagem sobre <strong>' . $assunto_form . '</strong>.</p>
+            <p style='font-size: 16px;'>Nossos magos e desenvolvedores já estão analisando seu contato e responderemos o mais breve possível.</p>
+            
+            <div style='margin-top: 30px; padding: 20px; background-color: #1f144d; border-radius: 8px; border-left: 4px solid #00ccff;'>
+                <p style='margin: 0; font-style: italic; font-size: 14px; color: #b3b3b3;'>'Transformando sonhos em pixels e magia em código.'</p>
+            </div>
+        </div>
+
+        <div style='padding: 30px; text-align: center; background-color: #050111; font-size: 12px; color: #666666;'>
+            <p style='margin-bottom: 10px;'>
+                <strong style='color: #ffffff;'>Dream Sorcerer <span style='color: #00ccff;'>Studios</span></strong>
+            </p>
+            <p>Este é um e-mail automático. Por favor, não responda diretamente a esta mensagem.</p>
+            <div style='margin-top: 20px;'>
+                <a href='https://dreamsorcererstudios.com.br/' style='color: #00ccff; text-decoration: none; margin: 0 10px;'>Website</a> | 
+                <a href='#' style='color: #00ccff; text-decoration: none; margin: 0 10px;'>Nossos Jogos</a>
+            </div>
+        </div>
+    </div>
+</div>";
 
         $mail->send();
 
