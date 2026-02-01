@@ -17,7 +17,7 @@ export const sliderConfig = ()=> {
             "title": "BIBLIA QUIZ",
             "logoTitle": "images/logo-biblequiz.png",
             "image": "img/bibliaquiz-slide.jpg",
-            "description": "<span>Relache e divirta-se mostrando seus conhecimentos Bíblicos</span>",
+            "description": "<span>Relaxe e divirta-se mostrando seus conhecimentos Bíblicos</span>",
         },
     ]
     sliderContent.forEach((e, index) => {

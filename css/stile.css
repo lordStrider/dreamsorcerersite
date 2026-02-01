@@ -336,10 +336,13 @@ footer {
     padding: 10px;
 }
 .sobreImg {
-    border: 2px solid #ffd700;
+    border: 2px solid var(--bs-info);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 15px rgba(106, 111, 148, 0.5);
     width: 80%;
     float: right;
+}
+.sobreImg:hover {
+box-shadow: 0 0 30px rgba(106, 111, 148, 0.5);
 }
