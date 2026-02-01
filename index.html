@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/slider-pro.css" media="screen" />
     <link href="css/stile.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <script type="module" src="js/jquery.min.js"></script>
     <script type="module" src="main.js"></script>
 </head>
 
@@ -36,12 +37,11 @@
     <section class="hero">
         <div class="slider-pro" id="my-slider">
             <div class="sp-slides">
-                <!-- Slide 1 -->
-                <div class="sp-slide">
-                    <p class="sp-layer"><span>gamesmsmsmskmsmks ullamco laboris nisi ut aliquip ex ea commodo.</span>
-                    </p>
-                    <img class="sp-image" src="img/brave-dream-slide.jpg" />
-                </div>
+                <div class="sp-slide" data-original-index="0" data-init="true" data-index="0" data-loaded="true" style="width: 1905px; height: 65vh; left: 0px; top: 0px; opacity: 0; z-index: 10; visibility: visible; transition: opacity 1.5s;"><div class="sp-image-container" style="width: 1905px; height: 65vh;"><img class="sp-image" src="img/brave-dream-slide.jpg" data-default="img/brave-dream-slide.jpg" style="width: 100%; height: auto; margin-left: 0px; margin-top: -248.5px;"></div>
+            <div class="logo-mark"><img src="images/logo-brave.png" data-default="images/logo-brave.png"><p> BRAVE DREAM GUARDIAN</p></div>
+            <p class="sp-layer" data-layer-init="true" style="visibility: hidden; left: 0px; top: 0px; transform-origin: left top; transform: scale(1); opacity: 0;"><span><span>Divirta-se viajando pelo mundo dos sonhos.</span></span></p>
+            
+        </div>
         </div>
         <main>
             <section style="margin-top: 40px;">
@@ -124,7 +124,42 @@
         </div>
     </div>
 </section>
+<!-- area de contato -->
+ <section class="contact-section">
+    <div class="contact-container">
+        <h2>Entre em Contato</h2>
+        <p>Tem alguma dúvida sobre nossos jogos ou quer trocar uma ideia? Mande uma mensagem!</p>
+        
+        <form action="contato.php" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" name="name" placeholder="Como podemos te chamar?" required>
+            </div>
 
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Assunto</label>
+                <select id="subject" name="subject">
+                    <option value="suporte">Suporte Técnico</option>
+                    <option value="parceria">Parcerias / Negócios</option>
+                    <option value="feedback">Sugestões e Feedback</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Sua Mensagem</label>
+                <textarea id="message" name="message" rows="5" placeholder="Escreva aqui sua mensagem..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Mensagem</button>
+        </form>
+    </div>
+</section>
     <!-- <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold">PRICING <span style="color: var(--accent-cyan);">PLANS</span></h2>

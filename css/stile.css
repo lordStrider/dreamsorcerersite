@@ -9,6 +9,7 @@
     --accent-purple: #a020f0;
     --text-gray: #b0b0b0;
     --bg-box: rgba(8, 8, 8, 0.1);
+    --bg-fundo: #080116;
 }
 
 body {
@@ -308,7 +309,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #080116;
+    background-color: var(--bg-fundo);
     z-index: 1;
 }
 
@@ -345,4 +346,98 @@ footer {
 }
 .sobreImg:hover {
 box-shadow: 0 0 30px rgba(106, 111, 148, 0.5);
+}
+/* Estilização Geral da Seção de Contato */
+.contact-section {
+    background-color: var(--bg-fundo); /* Fundo preto como o site */
+    color: #fff;
+    padding: 60px 20px;
+    font-family: 'Inter', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.contact-container p {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+/* Estilo do Formulário */
+.contact-form {
+    background-color: var(--bg-card); /* Cinza bem escuro para destaque */
+    padding: 40px;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #eee;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: white; /* Inputs levemente mais claros que o fundo do form */
+    border: 1px solid var(--bs-info);
+    border-radius: 6px;
+    color: var(--bg-fundo);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: black; /* Realce ao clicar */
+}
+
+/* Estilo do Botão */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--bs-info);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    color: white;
+    text-shadow: 0 0 2px black;
+}
+
+.btn-submit:hover {
+    background-color: #16b9c2;
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .contact-form {
+        padding: 20px;
+    }
 }
