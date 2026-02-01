@@ -8,7 +8,7 @@
     --accent-cyan: #00f2ff;
     --accent-purple: #a020f0;
     --text-gray: #b0b0b0;
-    --bg-box: rgba(8, 8, 8, 0.286);
+    --bg-box: rgba(8, 8, 8, 0.1);
 }
 
 body {
@@ -28,9 +28,6 @@ body {
 /* Hero Section */
 .hero {
     padding: 0px 0;
-    background: linear-gradient(rgba(11, 1, 29, 0.6), rgba(11, 1, 29, 0.9)),
-        rl('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
     background-position: center;
     text-align: center;
 }
@@ -94,7 +91,7 @@ body {
 }
 
 footer {
-    background: #05000a;
+    background-color: var(--bg-card) !important;
     padding: 50px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -194,7 +191,7 @@ footer {
     .text {
         font-size: 11px
     }
-    
+
 }
 
 /* Outros estilos do seu site podem vir aqui */
@@ -213,47 +210,136 @@ footer {
     text-align: center;
 }
 
-.sp-layer  {
-    text-align: center;
-    margin-top: 20%;
-    margin-left: 0 auto;
-    font-size: 2em;
-    width: 100%;
-}
 .sp-layer {
+    position: absolute;
+    text-align: center;
+    font-size: 2em;
     width: 50%;
     word-wrap: break-word;
     background-color: var(--bg-box);
+    margin-top: 20%;
     margin-left: 25%;
 }
+
 .logo-mark {
     position: absolute;
-    width: 30vw;
-    height: 40px;
-    margin-top: -60vh;
+    display: flex;
+    width: 20vw;
+    height: 6vh;
+    margin-top: -64vh;
+    background-color: var(--bg-box);
+    justify-content: space-evenly;
+    justify-items: baseline;
+    font-size: 1.4em;
 }
-.logo-mark img{
+
+.logo-mark p {
+    margin: 0px;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px #05000a;
+}
+
+.logo-mark img {
     position: absolute;
-    height: 8vh;
+    height: 6vh;
     left: 5px;
 }
+
 @media only screen and (max-width: 900px) {
-.sp-layer  {
-    text-align: center;
-    margin-top: 30%;
-    margin-left: 0 auto;
-    font-size: 1em;
-    width: 100%;
+    .sp-layer {
+        text-align: center;
+        margin-top: 30%;
+        margin-left: 0 auto;
+        font-size: 1em;
+        width: 100%;
+    }
+
+    .sp-layer span {
+        background-color: rgba(0, 0, 0, 0);
+        padding: 2px;
+
+    }
+
+    .sp-layer {
+        position: absolute;
+        text-align: center;
+        font-size: 1.2em;
+        width: 80%;
+        word-wrap: break-word;
+        background-color: var(--bg-box);
+        margin-top: 100%;
+        margin-left: 10%;
+    }
+
+    .logo-mark {
+        position: absolute;
+        display: flex;
+        width: 70vw;
+        height: 6vh;
+        margin-top: -64vh;
+        background-color: var(--bg-box);
+        justify-content: space-around;
+        vertical-align: middle;
+        font-size: 1em;
+    }
+
+    .logo-mark img {
+        position: absolute;
+        height: 4vh;
+        left: 5px;
+    }
+
 }
-.sp-layer span{ 
-    background-color: rgba(0, 0, 0, 0);
-    padding: 2px;
-    
+
+/* conteudo sobre nos */
+/* Importe as fontes do Google Fonts para complementar a estética do seu site */
+#sobre-nos {
+    /* Use um fundo sutil do seu site */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    font-family: var(--bs-font-sans-serif);
 }
-.sp-layer {
-    width: 70%;
-    word-wrap: break-word;
-    background-color: var(--bg-box);
-    margin-left: 15%;
-} 
+
+#sobre-nos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #080116;
+    z-index: 1;
+}
+
+#sobre-nos .row {
+    background: var(--bg-card);
+    padding: 20px;
+    font-size: 1.1em;
+    text-align: justify;
+}
+
+#sobre-nos .container {
+    position: relative;
+    z-index: 2;
+}
+
+.image-container img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+#sobre-nos .container {
+    padding: 10px;
+}
+.sobreImg {
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    width: 80%;
+    float: right;
 }
