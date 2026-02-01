@@ -69,12 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Body    = "<div style='background-color: #050111; padding: 40px 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff;'>
     <div style='max-width: 600px; margin: 0 auto; background-color: #0d0428; border-radius: 10px; overflow: hidden; border: 1px solid #1f144d;'>
         <div style='padding-left: 25px; background-color: #28116597;'>
-            <img src='images/logo.png' style='height: 60px; vertical-align: middle;'>Dream Sorcerer <span style='color: #00f2ff;'>Studios</span>
+            <img src='https://dreamsorcererstudios.com.br/images/logo.png' style='height: 60px; vertical-align: middle;'>Dream Sorcerer <span style='color: #00f2ff;'>Studios</span>
             
         </div>
         <div style='padding: 30px; line-height: 1.6;'>
-            <h2 style='color: #00ccff; margin-top: 0; text-transform: capitalize;'>Olá, ' . $nome . '!</h2>
-            <p style='font-size: 16px;'>Recebemos sua mensagem sobre <strong>' . $assunto_form . '</strong>.</p>
+            <h2 style='color: #00ccff; margin-top: 0; text-transform: capitalize;'>Olá, '$nome'!</h2>
+            <p style='font-size: 16px;'>Recebemos sua mensagem sobre <strong>'$assunto_form'</strong>.</p>
             <p style='font-size: 16px;'>Nossos magos e desenvolvedores já estão analisando seu contato e responderemos o mais breve possível.</p>
             
             <div style='margin-top: 30px; padding: 20px; background-color: #1f144d; border-radius: 8px; border-left: 4px solid #00ccff;'>
