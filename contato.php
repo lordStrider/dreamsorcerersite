@@ -69,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->CharSet    = 'UTF-8';
 
         // --- E-MAIL 1: PARA VOCÊ ---
-        $mail->setFrom('contato@dreamsorcererstudios.com.br', 'Site de Jogos - Contato');
-        $mail->addAddress('squallion26@gmail.com'); 
+        $mail->setFrom('contato@dreamsorcererstudios.com.br', 'Dream Sorcerer Studios - Contato');
+        $mail->addAddress('contato@dreamsorcererstudios.com.br'); 
         $mail->addReplyTo($email, $nome);
 
         $mail->isHTML(true);
