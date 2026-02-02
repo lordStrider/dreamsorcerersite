@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $input = json_decode(file_get_contents("php://input"), true) ?? $_POST;
     // No início do script, após receber o $input
 $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-$recaptcha_secret = '6LdbkF0sAAAAAAIuLCiifjFf3fIht02U6ft1wTET';
+$recaptcha_secret = '6LdaZl0sAAAAACqDdKqBDt63X1jFyIIAT5Nr483a';
 $recaptcha_response = $input['recaptcha_token'];
 
 // Faz a chamada ao Google

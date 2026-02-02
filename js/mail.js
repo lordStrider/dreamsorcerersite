@@ -13,7 +13,7 @@ export const enviarEmail = () => {
 
         // 3. Execução do reCAPTCHA v3
         grecaptcha.ready(function() {
-            grecaptcha.execute('6LdbkF0sAAAAAAIuLCiifjFf3fIht02U6ft1wTET', { action: 'submit' }).then(function(token) {
+            grecaptcha.execute('6LdaZl0sAAAAACqDdKqBDt63X1jFyIIAT5Nr483a', { action: 'submit' }).then(function(token) {
                 
                 // 4. Coleta os dados do formulário
                 const formData = {};
