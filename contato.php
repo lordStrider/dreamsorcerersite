@@ -21,7 +21,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     // Recebe o input (seja JSON via fetch/ajax ou FormData)
     $input = json_decode(file_get_contents("php://input"), true) ?? $_POST;
+    // No início do script, após receber o $input
+$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+$recaptcha_secret = '6LdbkF0sAAAAAAIuLCiifjFf3fIht02U6ft1wTET';
+$recaptcha_response = $input['recaptcha_token'];
 
+// Faz a chamada ao Google
+$verify = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+$response_data = json_decode($verify);
+
+// Verifica se é um humano (score > 0.5 geralmente é seguro)
+if (!$response_data->success || $response_data->score < 0.5) {
+    http_response_code(403);
+    echo json_encode(["status" => "error", "message" => "Atividade suspeita de bot detectada."]);
+    exit;
+}
+
+// ... se passar daqui, o código de envio de e-mail continua normalmente
     // Sanitização básica
     $nome    = filter_var($input['name'], FILTER_SANITIZE_SPECIAL_CHARS);
     $email   = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
