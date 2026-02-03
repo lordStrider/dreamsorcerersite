@@ -225,13 +225,14 @@ footer {
 .logo-mark {
     position: absolute;
     display: flex;
-    width: 20vw;
+    min-width: 20vw;
     height: 6vh;
     margin-top: -64vh;
     background-color: var(--bg-box);
     justify-content: space-evenly;
     justify-items: baseline;
     font-size: 1.4em;
+    overflow-x: visible;
 }
 
 .logo-mark p {
@@ -276,12 +277,12 @@ footer {
         position: absolute;
         display: flex;
         width: 70vw;
-        height: 6vh;
+        height: 5vh;
         margin-top: -64vh;
         background-color: var(--bg-box);
         justify-content: space-around;
         vertical-align: middle;
-        font-size: 1em;
+        font-size: .9em;
     }
 
     .logo-mark img {
@@ -289,7 +290,14 @@ footer {
         height: 4vh;
         left: 5px;
     }
-
+    .sobreImg {
+    border: 2px solid var(--bs-info);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(106, 111, 148, 0.5);
+    width: 80%;
+    float: right;
+}
 }
 
 /* conteudo sobre nos */
@@ -436,8 +444,18 @@ box-shadow: 0 0 30px rgba(106, 111, 148, 0.5);
 }
 
 /* Responsividade */
-@media (max-width: 480px) {
+@media (max-width: 900px) {
     .contact-form {
         padding: 20px;
     }
+    .sobreImg {
+    border: 2px solid var(--bs-info);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(106, 111, 148, 0.5);
+    width: 80%;
+    float: none;
+    margin: 0 auto;
+}
+
 }
