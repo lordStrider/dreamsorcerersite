@@ -1,4 +1,4 @@
-const loginAdm = ()=> {
+export const loginAdm = ()=> {
     // --- FUNÇÃO DE LOGIN ---
         document.querySelector('.btn-login').onsubmit = async (e) => {
             e.preventDefault();

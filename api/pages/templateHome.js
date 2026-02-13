@@ -1,3 +1,4 @@
+import { loginAdm } from "../modulos/loginAdm.js";
 export const templateHome = ()=> {
     const myTemplate = `
     <div class="container-fluid vh-100 corpo-bg">
@@ -51,5 +52,6 @@ export const templateHome = ()=> {
     `;
     const myApp = document.querySelector("#app");
     myApp.innerHTML = myTemplate;
+    loginAdm()
 
 }
