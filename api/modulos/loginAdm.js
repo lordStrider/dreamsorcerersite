@@ -30,7 +30,7 @@ export const loginAdm = () => {
 
                 // Redireciona após 1.5 segundos
                 setTimeout(() => {
-                    window.location.href = 'dashboard.php';
+                    templateAdmin();
                 }, 1500);
             } else {
                 // ERRO (401 ou outros)
