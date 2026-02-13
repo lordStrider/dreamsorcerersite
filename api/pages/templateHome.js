@@ -22,11 +22,11 @@ export const templateHome = ()=> {
 
                     <form id="loginForm">
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="" required>
+                            <input type="text" class="form-control" placeholder="" id="loginUsuario" required>
                         </div>
 
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="" required>
+                            <input type="password" class="form-control" id="loginSenha" placeholder="" required>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -39,9 +39,9 @@ export const templateHome = ()=> {
 
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 btn-login" id="btnLogin">
+                        <div type="submit" class="btn btn-primary w-100 btn-login" id="btnLogin">
                             Acessar
-                        </button>
+                        </div>
                     </form>
 
                 </div>
