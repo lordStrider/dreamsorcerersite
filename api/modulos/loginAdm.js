@@ -1,6 +1,8 @@
+
+import { templateAdmin } from "../pages/templateAdmin.js";
 export const loginAdm = ()=> {
     // --- FUNÇÃO DE LOGIN ---
-        document.querySelector('.btn-login').onsubmit = async (e) => {
+        document.getElementById('btnLogin').onsubmit = async (e) => {
             e.preventDefault();
             const dados = {
                 usuario: document.getElementById('loginUsuario').value,
@@ -17,7 +19,7 @@ export const loginAdm = ()=> {
             if (res.token) {
                 // SALVA O JWT NO NAVEGADOR
                 localStorage.setItem('meu_jwt', res.token);
-                mostrarPainel();
+                templateAdmin();
             } else {
                 document.getElementById('msgErro').innerText = res.erro || "Falha no login";
             }
