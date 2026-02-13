@@ -20,13 +20,13 @@ export const loginAdm = () => {
             });
 
             const resultado = await response.json();
-
+            
             if (response.ok) {
                 // SUCESSO: Armazena o JWT no localStorage
                 localStorage.setItem('jwt_token', resultado.token);
 
-                mensagemDiv.style.color = 'green';
-                mensagemDiv.innerText = 'Login realizado! Redirecionando...';
+                
+                alert('Login realizado! Redirecionando...');
 
                 // Redireciona após 1.5 segundos
                 setTimeout(() => {
@@ -34,13 +34,12 @@ export const loginAdm = () => {
                 }, 1500);
             } else {
                 // ERRO (401 ou outros)
-                mensagemDiv.style.color = 'red';
-                mensagemDiv.innerText = resultado.erro || 'Erro ao entrar';
+                alert('Erro ao entrar');
             }
 
         } catch (error) {
-            mensagemDiv.style.color = 'red';
-            mensagemDiv.innerText = 'Erro ao conectar com o servidor.';
+            
+            alert('Erro ao conectar com o servidor.');
             console.error(error);
         }
     });
