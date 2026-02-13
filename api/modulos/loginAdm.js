@@ -2,7 +2,7 @@
 import { templateAdmin } from "../pages/templateAdmin.js";
 export const loginAdm = ()=> {
     // --- FUNÇÃO DE LOGIN ---
-        document.querySelector("#btnLogin") = async (e) => {
+        document.getElementById('btnLogin').onsubmit = async (e) => {
             e.preventDefault();
             const dados = {
                 usuario: document.getElementById('loginUsuario').value,
