@@ -2,7 +2,8 @@
 import { templateAdmin } from "../pages/templateAdmin.js";
 export const loginAdm = ()=> {
     // --- FUNÇÃO DE LOGIN ---
-        document.getElementById('btnLogin').onsubmit = async (e) => {
+    const btnLogin = document.querySelector(".btn-login")
+       btnLogin.addEventListener("click", async (e) => {
             e.preventDefault();
             const dados = {
                 usuario: document.getElementById('loginUsuario').value,
@@ -23,5 +24,5 @@ export const loginAdm = ()=> {
             } else {
                 document.getElementById('msgErro').innerText = res.erro || "Falha no login";
             }
-        };
+        });
 }

@@ -39,9 +39,9 @@ export const templateHome = ()=> {
 
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 btn-login" id="btnLogin">
+                        <div type="submit" class="btn btn-primary w-100 btn-login" id="btnLogin">
                             Acessar
-                        </button>
+                        </div>
                     </form>
 
                 </div>
