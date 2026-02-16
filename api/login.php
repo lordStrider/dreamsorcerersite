@@ -3,7 +3,11 @@
 ob_start();
 
 require 'vendor/autoload.php';
-require 'db.php'; 
+require 'db.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 use \Firebase\JWT\JWT;
 
 header("Content-Type: application/json");
