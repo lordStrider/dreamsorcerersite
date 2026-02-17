@@ -20,11 +20,12 @@ export const createPush = () => {
         $.ajax({
             url: "https://api.dreamsorcererstudios.com.br/ConfigPushNotification.php",
             type: 'POST',
+            contentType: 'application/json', // Importante para o php://input
+            dataType: 'json',
             data: dados,
-            headers: {
-                'Authorization': 'Bearer ' + authToken
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
             },
-
             success: function (response) {
                 try {
                     let resposta = response;
