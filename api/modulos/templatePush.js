@@ -2,7 +2,7 @@ import { createPush } from "./createPush.js";
 export const temaplatePush = ()=> {
     const meuPush = `
     <div class="container-fluid p-4">
-  <div class="row g-4">
+  <div class="row">
 
     <!-- FORMULÁRIO -->
     <div class="col-lg-6 col-xs-12">
@@ -99,5 +99,5 @@ export const temaplatePush = ()=> {
     `;
 const conteudo = document.querySelector(".content");
 conteudo.innerHTML = meuPush;
-createPush()
+createPush();
 }

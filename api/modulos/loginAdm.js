@@ -30,7 +30,7 @@ export const loginAdm = () => {
 
                 // Redireciona após 1.5 segundos
                 setTimeout(() => {
-                    templateAdmin();
+                    templateAdmin(usuario);
                 }, 1500);
             } else {
                 // ERRO (401 ou outros)

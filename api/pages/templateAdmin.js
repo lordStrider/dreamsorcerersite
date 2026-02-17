@@ -1,25 +1,14 @@
 import { temaplatePush } from "../modulos/templatePush.js";
-export const templateAdmin = ()=> {
+import { mainMenu,adminMenu } from "../modulos/menu.js";
+export const templateAdmin = (_usuario)=> {
+    _usuario = "Admin"
+    const nomeProjects = "BibliaQuiz"
     const myTemplate = `
 <div class="admin-grid">
 
   <!-- SIDEBAR (DESKTOP) -->
-  <aside class="sidebar d-none d-lg-flex flex-column">
-    <!-- Header alinhado com topbar -->
-    <div class="d-flex align-items-center px-3 topbar bg-dark border-0">
-      <h5 class="mb-0 text-white">Admin</h5>
-    </div>
-
-    <!-- Menu -->
-    <nav class="p-3">
-      <ul class="nav nav-pills flex-column gap-1">
-        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Usuários</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Produtos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Configurações</a></li>
-      </ul>
-    </nav>
+  <aside class="sidebar d-none d-lg-flex flex-column" id="mySideMenu">
+    
   </aside>
 
   <!-- TOPBAR -->
@@ -31,14 +20,14 @@ export const templateAdmin = ()=> {
               data-bs-target="#mobileSidebar">
         <i class="bi bi-list"></i>
       </button>
-      <h5 class="mb-0">Dashboard</h5>
+      <h5 class="mb-0 subTitleMenu">Dashboard - ${nomeProjects}</h5>
     </div>
 
     <div class="dropdown">
       <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
-        <i class="bi bi-person-circle"></i> Admin
+        <i class="bi bi-person-circle"></i> ${_usuario}
       </button>
-      <ul class="dropdown-menu dropdown-menu-end">
+      <ul class="dropdown-menu dropdown-menu-end" id="adm-Menu">
         <li><a class="dropdown-item" href="#">Perfil</a></li>
         <li><a class="dropdown-item" href="#">Sair</a></li>
       </ul>
@@ -125,5 +114,6 @@ export const templateAdmin = ()=> {
     const myApp = document.querySelector("#app");
     myApp.innerHTML = myTemplate;
     temaplatePush()
-
+    mainMenu()
+    adminMenu()
 }
