@@ -1,5 +1,4 @@
 <?php
-require_once 'validar.php';
 ob_start();
 
 // 🔒 Desativa exibição de erros em HTML
