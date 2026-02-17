@@ -1,18 +1,11 @@
 
 export const router = (_rota)=> {
-  const http = constantes.url;
-  const token = localStorage.getItem("access_token");
+  //const http = constantes.url;
+  //const token = localStorage.getItem("access_token");
   console.log(_rota)
     switch (_rota) {
         case 'Sair':
-          $(".app").fadeOut(500, () => {
-            loginManager();
-            const app2Stile = document.querySelector("#app2");
-            app2Stile.style = `
-            background: url(../img/fundogerente.jpg) no-repeat;
-            background-position: top;`;
-            $("#app2").fadeIn(300);
-        });
+
           break;
         case 'Colaboradores':
           cadastraColaboradores(token,http)
