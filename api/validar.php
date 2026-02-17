@@ -1,4 +1,9 @@
 <?php
+// Permitir qualquer origem ou apenas o seu domínio principal
+header("Access-Control-Allow-Origin: https://dreamsorcererstudios.com.br");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
 require 'vendor/autoload.php';
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
