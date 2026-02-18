@@ -64,3 +64,35 @@ export const createPush = () => {
     previewImage.src = 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
   };
 }
+export const pushMassive = ()=> {
+    const btnEnviar = document.querySelector("#btnEnviar");
+    btnEnviar.addEventListener("click", () => {
+    $.ajax({
+            url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(data) {
+                if(data.status === 'processado') {
+                    $('#resultado').html(`
+                        <div class="alert alert-success">
+                            <b>Sucesso!</b><br>
+                            ✅ Enviados: ${data.enviados}<br>
+                            ❌ Falhas: ${data.erros}<br>
+                            🧹 Tokens Inválidos Removidos: ${data.removidos_por_invalidez}
+                        </div>
+                    `);
+                } else {
+                    $('#resultado').html('<div class="alert alert-danger">Erro: ' + data.error + '</div>');
+                }
+            },
+            error: function() {
+                $('#resultado').html('<div class="alert alert-danger">Erro crítico ao processar a requisição no servidor.</div>');
+            },
+            complete: function() {
+                $('#loader').hide();
+                $('#btnEnviar').prop('disabled', false);
+            }
+        });
+    });
+}

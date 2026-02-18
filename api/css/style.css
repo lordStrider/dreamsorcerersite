@@ -58,7 +58,12 @@ body {
         margin: 5vh;
     }
 }
-
+#btnEnviar {
+    width: 100%;
+}
+#btnEnviarAll {
+    width: 100%;
+}
 /* GRID PRINCIPAL */
 .admin-grid {
     display: grid;

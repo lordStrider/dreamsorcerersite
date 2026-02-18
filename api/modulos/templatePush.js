@@ -40,8 +40,14 @@ export const temaplatePush = ()=> {
           </label>
           <input class="form-control" placeholder="Informe nome opcional" id="token">
         </div>
-
-        <div class="btn btn-primary" id="btnEnviar">Avançar</div>
+        <div class="row">
+          <div class="col-6">
+            <div class="btn btn-primary" id="btnEnviar">Enviar</div>
+          </div>
+          <div class="col-6">
+            <div class="btn btn-secondary" id="btnEnviarAll">Enviar todos</div>
+          </div>
+        </div>
       </div>
     </div>
 
