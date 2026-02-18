@@ -1,4 +1,8 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+ini_set('display_errors', 1);
 header("Content-Type: application/json");
 
 // Liga o log de erros para não dar 500 "seco"
@@ -30,7 +34,7 @@ try {
     $accessToken = obterTokenGoogle($jsonPath);
 
     // 5. Busca os tokens no banco usando $conn
-    $stmt = $conn->prepare("SELECT notify_token FROM usuario WHERE notify_token IS NOT NULL AND notify_token != ''");
+    $stmt = $conn->prepare("SELECT notify_token FROM Usuarios WHERE notify_token IS NOT NULL AND notify_token != ''");
     $stmt->execute();
     $tokens = $stmt->fetchAll(PDO::FETCH_COLUMN);
 

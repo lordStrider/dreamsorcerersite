@@ -43,7 +43,8 @@ export const adminMenu = ()=> {
     dropItens.forEach( item => {
         item.addEventListener("click",(e)=> {
             console.log(e.currentTarget.innerText)
-            //router()
+            let rota = e.currentTarget.innerText;
+            router(rota)
         })
     });
 }

@@ -1,11 +1,11 @@
-
+import { templateHome } from "../pages/templateHome.js";
 export const router = (_rota)=> {
   //const http = constantes.url;
   //const token = localStorage.getItem("access_token");
   console.log(_rota)
     switch (_rota) {
         case 'Sair':
-
+          templateHome();
           break;
         case 'Colaboradores':
           cadastraColaboradores(token,http)
