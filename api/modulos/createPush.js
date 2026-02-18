@@ -65,8 +65,8 @@ export const createPush = () => {
   };
 }
 export const pushMassive = ()=> {
-    const btnEnviar = document.querySelector("#btnEnviar");
-    btnEnviar.addEventListener("click", () => {
+    const btnEnviarAll = document.querySelector("#btnEnviarAll");
+    btnEnviarAll.addEventListener("click", () => {
     $.ajax({
             url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
             type: 'POST',
