@@ -14,8 +14,7 @@ export const createPush = () => {
         const dados = {
             titulo: titulo.value,
             corpo: corpo.value,
-            imagem: imagem.value,
-            mytoken: token.value
+            imagem: imagem.value
         }
     $.ajax({
             url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
