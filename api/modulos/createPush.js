@@ -11,11 +11,16 @@ export const createPush = () => {
     const btnEnviar = document.querySelector("#btnEnviar");
     const btnEnviarAll = document.querySelector("#btnEnviarAll");
     btnEnviarAll.addEventListener("click", () => {
+        const dados = {
+            titulo: titulo.value,
+            corpo: corpo.value,
+            imagem: imagem.value,
+            mytoken: token.value
+        }
     $.ajax({
             url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
             type: 'POST',
-            data: $(this).serialize(),
-            dataType: 'json',
+            data: dados,
             success: function(data) {
                 if(data.status === 'processado') {
                     $('#resultado').html(`
