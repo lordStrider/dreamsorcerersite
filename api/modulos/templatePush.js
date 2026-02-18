@@ -1,4 +1,4 @@
-import { createPush } from "./createPush.js";
+import { createPush,pushMassive } from "./createPush.js";
 export const temaplatePush = ()=> {
     const meuPush = `
     <div class="container-fluid p-4">
@@ -106,4 +106,5 @@ export const temaplatePush = ()=> {
 const conteudo = document.querySelector(".content");
 conteudo.innerHTML = meuPush;
 createPush();
+pushMassive();
 }
