@@ -81,7 +81,7 @@ try {
     // 7. Limpa tokens mortos
     if (!empty($stats['invalidos'])) {
         $placeholders = implode(',', array_fill(0, count($stats['invalidos']), '?'));
-        $del = $conn->prepare("DELETE FROM usuario WHERE notify_token IN ($placeholders)");
+        $del = $conn->prepare("DELETE FROM Usuarios WHERE notify_token IN ($placeholders)");
         $del->execute($stats['invalidos']);
     }
 
