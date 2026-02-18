@@ -132,10 +132,23 @@ function dispararBroadcast($titulo, $body, $image, $projectId, $jsonPath, $db) {
 }
 
 // Início da execução
-if (!empty($titulo) && !empty($body)) {
-    // Note: certifique-se que o objeto de conexão em db.php se chama $pdo ou $conn
-    dispararBroadcast($titulo, $body, $image, $projectId, $serviceAccountPath, $pdo);
-} else {
-    echo json_encode(["error" => "Título e corpo são obrigatórios."]);
+// ... (mantenha suas funções getAccessToken e o corpo da dispararBroadcast)
+
+// Início da execução
+try {
+    if (!empty($titulo) && !empty($body)) {
+        // MUITO IMPORTANTE: Verifique se em db.php é $pdo ou $conn
+        // Se for $conn, mude abaixo para $conn
+        if (!isset($pdo)) {
+            throw new Exception("Variável de conexão com banco de dados não encontrada.");
+        }
+        
+        dispararBroadcast($titulo, $body, $image, $projectId, $serviceAccountPath, $pdo);
+    } else {
+        echo json_encode(["error" => "Título e corpo são obrigatórios."]);
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(["error" => $e->getMessage()]);
 }
 ?>
