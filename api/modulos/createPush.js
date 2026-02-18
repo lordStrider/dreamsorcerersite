@@ -20,6 +20,7 @@ export const createPush = () => {
             url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
             type: 'POST',
             data: dados,
+            dataType: 'json', // Garante que o jQuery trate a resposta como JSON
             success: function(data) {
                 if(data.status === 'processado') {
                     $('#resultado').html(`
