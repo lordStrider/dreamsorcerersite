@@ -1,87 +1,118 @@
 <?php
-// 1. Ligar reporte de erros para ver o culpado real
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 header("Content-Type: application/json");
 
+// Liga o log de erros para não dar 500 "seco"
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 try {
-    // 2. Tente carregar o banco
-    if (!file_exists('db.php')) throw new Exception("Arquivo db.php nao encontrado");
+    // 1. Conexão (Cuidado com o nome da variável: é $conn)
     require_once 'db.php'; 
 
-    if (!isset($pdo)) throw new Exception("Variavel \$pdo nao definida no db.php");
+    if (!isset($conn)) {
+        throw new Exception("Erro: A variável de conexão \$conn não existe. Verifique o db.php.");
+    }
 
-    // 3. Dados do Firebase
+    // 2. Configurações Firebase
     $projectId = 'bibliaquiz-527bd'; 
     $jsonPath = __DIR__ . '/credentials.json';
-    
-    if (!file_exists($jsonPath)) throw new Exception("Arquivo credentials.json nao encontrado em: " . $jsonPath);
 
-    // 4. Pegar Token de Acesso (Processo embutido para evitar erro 500 de funcao)
-    $json = json_decode(file_get_contents($jsonPath), true);
+    // 3. Captura os dados do AJAX
+    $titulo = $_POST['titulo'] ?? '';
+    $body   = $_POST['corpo']  ?? '';
+    $image  = $_POST['imagem'] ?? '';
+
+    if (empty($titulo) || empty($body)) {
+        throw new Exception("Preencha título e corpo da mensagem.");
+    }
+
+    // 4. Gera o Access Token (Função simplificada dentro do script)
+    $accessToken = obterTokenGoogle($jsonPath);
+
+    // 5. Busca os tokens no banco usando $conn
+    $stmt = $conn->prepare("SELECT notify_token FROM usuario WHERE notify_token IS NOT NULL AND notify_token != ''");
+    $stmt->execute();
+    $tokens = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    $stats = ['sucessos' => 0, 'falhas' => 0, 'invalidos' => []];
+    $url = "https://fcm.googleapis.com/v1/projects/$projectId/messages:send";
+
+    // 6. Loop de Envio
+    $ch = curl_init();
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer ' . $accessToken,
+            'Content-Type: application/json'
+        ]
+    ]);
+
+    foreach ($tokens as $token) {
+        $payload = [
+            'message' => [
+                'token' => trim($token),
+                'notification' => ['title' => $titulo, 'body' => $body, 'image' => $image],
+                'android' => ['priority' => 'high']
+            ]
+        ];
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        $res = json_decode(curl_exec($ch), true);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if ($httpCode === 200) {
+            $stats['sucessos']++;
+        } else {
+            $stats['falhas']++;
+            // Se o token for inválido, guarda para deletar
+            if (isset($res['error']['details'][0]['errorCode']) && $res['error']['details'][0]['errorCode'] === 'UNREGISTERED') {
+                $stats['invalidos'][] = $token;
+            }
+        }
+    }
+    curl_close($ch);
+
+    // 7. Limpa tokens mortos
+    if (!empty($stats['invalidos'])) {
+        $placeholders = implode(',', array_fill(0, count($stats['invalidos']), '?'));
+        $del = $conn->prepare("DELETE FROM usuario WHERE notify_token IN ($placeholders)");
+        $del->execute($stats['invalidos']);
+    }
+
+    echo json_encode([
+        "status" => "processado",
+        "enviados" => $stats['sucessos'],
+        "erros" => $stats['falhas'],
+        "removidos_por_invalidez" => count($stats['invalidos'])
+    ]);
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(["error" => $e->getMessage()]);
+}
+
+// Função auxiliar
+function obterTokenGoogle($path) {
+    if (!file_exists($path)) throw new Exception("Arquivo credentials.json não encontrado.");
+    $json = json_decode(file_get_contents($path), true);
     $now = time();
     $header = base64_encode(json_encode(['alg' => 'RS256', 'typ' => 'JWT']));
     $payload = base64_encode(json_encode([
         'iss' => $json['client_email'],
         'scope' => 'https://www.googleapis.com/auth/firebase.messaging',
         'aud' => 'https://oauth2.googleapis.com/token',
-        'exp' => $now + 3600,
-        'iat' => $now
+        'exp' => $now + 3600, 'iat' => $now
     ]));
-    $signature = '';
-    openssl_sign("$header.$payload", $signature, $json['private_key'], 'SHA256');
-    $jwt = "$header.$payload." . base64_encode($signature);
+    $sig = '';
+    openssl_sign("$header.$payload", $sig, $json['private_key'], 'SHA256');
+    $jwt = "$header.$payload." . base64_encode($sig);
 
-    $chAuth = curl_init('https://oauth2.googleapis.com/token');
-    curl_setopt($chAuth, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($chAuth, CURLOPT_POST, true);
-    curl_setopt($chAuth, CURLOPT_POSTFIELDS, http_build_query([
-        'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-        'assertion' => $jwt
-    ]));
-    $resAuth = json_decode(curl_exec($chAuth), true);
-    $accessToken = $resAuth['access_token'] ?? null;
-    curl_close($chAuth);
-
-    if (!$accessToken) throw new Exception("Nao foi possivel gerar o Access Token do Google");
-
-    // 5. Buscar os 2 tokens
-    $stmt = $pdo->query("SELECT notify_token FROM usuario WHERE notify_token IS NOT NULL AND notify_token != '' LIMIT 10");
-    $tokens = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-    $url = "https://fcm.googleapis.com/v1/projects/$projectId/messages:send";
-    $resultados = [];
-
-    foreach ($tokens as $token) {
-        $msg = [
-            'message' => [
-                'token' => trim($token),
-                'notification' => [
-                    'title' => $_POST['titulo'] ?? 'Teste',
-                    'body' => $_POST['corpo'] ?? 'Conteudo',
-                    'image' => $_POST['imagem'] ?? ''
-                ]
-            ]
-        ];
-
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken, 'Content-Type: application/json']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($msg));
-        $res = curl_exec($ch);
-        $resultados[] = json_decode($res, true);
-        curl_close($ch);
-    }
-
-    echo json_encode([
-        "status" => "processado",
-        "detalhes" => $resultados
-    ]);
-
-} catch (Exception $e) {
-    // Se der erro, ele vai imprimir aqui em vez de dar Erro 500 genérico
-    echo json_encode(["error" => $e->getMessage()]);
+    $ch = curl_init('https://oauth2.googleapis.com/token');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(['grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer', 'assertion' => $jwt]));
+    $res = json_decode(curl_exec($ch), true);
+    return $res['access_token'] ?? null;
 }
+?>
