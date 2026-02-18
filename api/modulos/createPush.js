@@ -22,15 +22,23 @@ export const createPush = () => {
             data: dados,
             dataType: 'json', // Garante que o jQuery trate a resposta como JSON
             success: function(data) {
+                const status = document.querySelector(".status-envio");
+                const enviados = document.querySelector(".enviados");
+                const erros = document.querySelector(".falhas");
+                const invalidos = document.querySelector(".invalidos");
                 if(data.status === 'processado') {
                    console.log(`
                         <div class="alert alert-success">
                             <b>Sucesso!</b><br>
                             ✅ Enviados: ${data.enviados}<br>
                             ❌ Falhas: ${data.erros}<br>
-                            🧹 Tokens Inválidos Removidos: ${data.removidos_por_invalidez}
+                            🧹 Tokens Removidos: ${data.removidos_por_invalidez}
                         </div>
                     `);
+                    status.innerHTML = "Sucesso";
+                    enviados.innerHTML = data.enviados;
+                    erros.innerHTML = data.erros;
+                    invalidos.innerHTML = data.removidos_por_invalidez;
                 } else {
                     $('#resultado').html('<div class="alert alert-danger">Erro: ' + data.error + '</div>');
                 }

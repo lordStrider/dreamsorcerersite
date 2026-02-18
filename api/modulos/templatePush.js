@@ -5,9 +5,20 @@ export const temaplatePush = ()=> {
   <div class="row">
 
     <!-- FORMULÁRIO -->
-    <div class="col-lg-6 col-xs-12">
+    <div class="col-xl-6 col-lg-12 col-xs-12 card-form">
       <div class="card p-4 shadow-sm">
-
+      <div class="mb-3 class="situacao">
+      <label class="form-label">
+            Situação do enviao do token
+            <i class="bi bi-question-circle text-muted"></i>
+          </label>
+        <div class="row">
+          <div class="col-2"><span class="status-envio"> </span></div>
+          <div class="col-2">✅ Enviados: <span class="enviados"> </span></div>
+          <div class="col-2">❌ Falhas: <span class="falhas"> </span></div>
+          <div class="col-6">🧹 Tokens Removidos: <span class="invalidos"> </span></div>
+        </div>
+      </div>
         <div class="mb-3">
           <label class="form-label">
             Título da notificação
@@ -15,7 +26,8 @@ export const temaplatePush = ()=> {
           </label>
           <input class="form-control" placeholder="Insira um título opcional" id="titulo">
         </div>
-
+        
+        
         <div class="mb-3">
           <label class="form-label">
             Texto da notificação
@@ -52,7 +64,7 @@ export const temaplatePush = ()=> {
     </div>
 
     <!-- PREVIEW -->
-    <div class="col-lg-6 col-xs-12">
+    <div class="col-xl-6 col-lg-12 col-xs-12">
       <div class="card-preview shadow-sm">
 
         <h5>Visualização do dispositivo</h5>

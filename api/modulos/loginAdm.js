@@ -30,15 +30,17 @@ export const loginAdm = () => {
 
                 // Redireciona após 1.5 segundos
                 setTimeout(() => {
+                    
                     templateAdmin(usuario);
                 }, 1500);
             } else {
                 // ERRO (401 ou outros)
-                alert('Erro ao entrar');
+                toggleOverlay()
+                alert(resultado.error);
             }
 
         } catch (error) {
-            
+            toggleOverlay()
             alert('Erro ao conectar com o servidor.');
             console.error(error);
         }
