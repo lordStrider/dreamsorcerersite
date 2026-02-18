@@ -23,7 +23,7 @@ export const createPush = () => {
             dataType: 'json', // Garante que o jQuery trate a resposta como JSON
             success: function(data) {
                 if(data.status === 'processado') {
-                    $('#resultado').html(`
+                   console.log(`
                         <div class="alert alert-success">
                             <b>Sucesso!</b><br>
                             ✅ Enviados: ${data.enviados}<br>
@@ -36,11 +36,10 @@ export const createPush = () => {
                 }
             },
             error: function() {
-                $('#resultado').html('<div class="alert alert-danger">Erro crítico ao processar a requisição no servidor.</div>');
+                alert("Erro crítico ao processar a requisição no servidor");
             },
             complete: function() {
-                $('#loader').hide();
-                $('#btnEnviar').prop('disabled', false);
+                
             }
         });
     });
