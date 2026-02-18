@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 try {
     // 1. Conexão (Cuidado com o nome da variável: é $conn)
-    require_once 'db.php'; 
+    require_once 'dbPlayers.php'; 
 
     if (!isset($conn)) {
         throw new Exception("Erro: A variável de conexão \$conn não existe. Verifique o db.php.");
