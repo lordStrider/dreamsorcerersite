@@ -2,7 +2,7 @@
 /**
  * enviar_massa.php - Disparo de notificações para toda a base
  */
-require_once 'validar.php';
+//require_once 'validar.php';
 require_once 'db.php'; // Carrega sua conexão ($conn ou $pdo)
 
 header("Access-Control-Allow-Origin: *");
