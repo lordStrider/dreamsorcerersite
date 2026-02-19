@@ -1,7 +1,7 @@
 import { createPush } from "./createPush.js";
 export const temaplatePush = ()=> {
     const meuPush = `
-    <div class="container-fluid p-4">
+    <div class="container-fluid">
   <div class="row">
 
     <!-- FORMULÁRIO -->
@@ -13,10 +13,12 @@ export const temaplatePush = ()=> {
             <i class="bi bi-question-circle text-muted"></i>
           </label>
         <div class="row">
-          <div class="col-2"><span class="status-envio"> </span></div>
-          <div class="col-2">✅ Enviados: <span class="enviados"> </span></div>
-          <div class="col-2">❌ Falhas: <span class="falhas"> </span></div>
-          <div class="col-6">🧹 Tokens Removidos: <span class="invalidos"> </span></div>
+          <div class="col-4">Enviados:</div>
+          <div class="col-4">Falhas:</div>
+          <div class="col-4">Removidos:</div>
+          <div class="col-4">✅ <span class="enviados"> </span></div>
+          <div class="col-4">❌ <span class="falhas"> </span></div>
+          <div class="col-4">🧹 <span class="invalidos"> </span></div>
         </div>
       </div>
         <div class="mb-3">

@@ -16,40 +16,45 @@ export const createPush = () => {
             corpo: corpo.value,
             imagem: imagem.value
         }
-    $.ajax({
-            url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
-            type: 'POST',
-            data: dados,
-            dataType: 'json', // Garante que o jQuery trate a resposta como JSON
-            success: function(data) {
-                const status = document.querySelector(".status-envio");
-                const enviados = document.querySelector(".enviados");
-                const erros = document.querySelector(".falhas");
-                const invalidos = document.querySelector(".invalidos");
-                if(data.status === 'processado') {
-                   console.log(`
-                        <div class="alert alert-success">
-                            <b>Sucesso!</b><br>
-                            ✅ Enviados: ${data.enviados}<br>
-                            ❌ Falhas: ${data.erros}<br>
-                            🧹 Tokens Removidos: ${data.removidos_por_invalidez}
-                        </div>
+        if (!dados.titulo && !dados.corpo) {
+
+            $.ajax({
+                url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
+                type: 'POST',
+                data: dados,
+                dataType: 'json', // Garante que o jQuery trate a resposta como JSON
+                success: function (data) {
+                    const status = document.querySelector(".status-envio");
+                    const enviados = document.querySelector(".enviados");
+                    const erros = document.querySelector(".falhas");
+                    const invalidos = document.querySelector(".invalidos");
+                    if (data.status === 'processado') {
+                        console.log(`
+                    <div class="alert alert-success">
+                    <b>Sucesso!</b><br>
+                    ✅ Enviados: ${data.enviados}<br>
+                    ❌ Falhas: ${data.erros}<br>
+                    🧹 Tokens Removidos: ${data.removidos_por_invalidez}
+                    </div>
                     `);
-                    status.innerHTML = "Sucesso";
-                    enviados.innerHTML = data.enviados;
-                    erros.innerHTML = data.erros;
-                    invalidos.innerHTML = data.removidos_por_invalidez;
-                } else {
-                    $('#resultado').html('<div class="alert alert-danger">Erro: ' + data.error + '</div>');
+                        status.innerHTML = "Sucesso";
+                        enviados.innerHTML = data.enviados;
+                        erros.innerHTML = data.erros;
+                        invalidos.innerHTML = data.removidos_por_invalidez;
+                    } else {
+                        $('#resultado').html('<div class="alert alert-danger">Erro: ' + data.error + '</div>');
+                    }
+                },
+                error: function () {
+                    alert("Erro crítico ao processar a requisição no servidor");
+                },
+                complete: function () {
+
                 }
-            },
-            error: function() {
-                alert("Erro crítico ao processar a requisição no servidor");
-            },
-            complete: function() {
-                
-            }
-        });
+            });
+        } else {
+            alerta ("É necessário preeencer Títuto e Texto!")
+        }
     });
     btnEnviar.addEventListener("click", () => {
         const dados = {
@@ -84,27 +89,27 @@ export const createPush = () => {
 
     // aqui codigo para atualizar imagens e textos
     // Título
-  titulo.addEventListener('input', () => {
-    previewTitle.textContent =
-      titulo.value || 'Título da notificação';
-  });
+    titulo.addEventListener('input', () => {
+        previewTitle.textContent =
+            titulo.value || 'Título da notificação';
+    });
 
-  // Texto
-  corpo.addEventListener('input', () => {
-    previewText.textContent =
-      corpo.value || 'Texto da notificação';
-  });
+    // Texto
+    corpo.addEventListener('input', () => {
+        previewText.textContent =
+            corpo.value || 'Texto da notificação';
+    });
 
-  // Imagem
-  imagem.addEventListener('input', () => {
-    previewImage.src =
-      imagem.value || 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
-  });
+    // Imagem
+    imagem.addEventListener('input', () => {
+        previewImage.src =
+            imagem.value || 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
+    });
 
-  // Fallback se a imagem quebrar
-  previewImage.onerror = () => {
-    previewImage.src = 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
-  };
+    // Fallback se a imagem quebrar
+    previewImage.onerror = () => {
+        previewImage.src = 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
+    };
 }
 // export const pushMassive = ()=> {
 //     const btnEnviarAll = document.querySelector("#btnEnviarAll");
