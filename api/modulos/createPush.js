@@ -53,7 +53,7 @@ export const createPush = () => {
                 }
             });
         } else {
-            alerta ("É necessário preeencer Títuto e Texto!")
+            alert("É necessário preeencer Títuto e Texto!")
         }
     });
     btnEnviar.addEventListener("click", () => {
