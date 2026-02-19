@@ -20,6 +20,7 @@ export const temaplatePush = ()=> {
           <div class="col-4">❌ <span class="falhas"> </span></div>
           <div class="col-4">🧹 <span class="invalidos"> </span></div>
         </div>
+        
       </div>
         <div class="mb-3">
           <label class="form-label">

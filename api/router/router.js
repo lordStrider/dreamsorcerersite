@@ -1,4 +1,5 @@
 import { templateHome } from "../pages/templateHome.js";
+import { templateUsers } from "../pages/templateUsers.js";
 export const router = (_rota)=> {
   //const http = constantes.url;
   //const token = localStorage.getItem("access_token");
@@ -7,8 +8,8 @@ export const router = (_rota)=> {
         case 'Sair':
           templateHome();
           break;
-        case 'Colaboradores':
-          cadastraColaboradores(token,http)
+        case 'Usuários':
+          templateUsers()
           break;
         case 'Transações':
           transacoes(token,http);

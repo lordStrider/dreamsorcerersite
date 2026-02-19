@@ -1,0 +1,76 @@
+
+
+    // Função para carregar os dados via AJAX
+    export const carregarDados = (pagina = 1, limite = 10)=> {
+        let paginaAtual = 1;
+        // Altere 'seu_arquivo.php' para o nome real do seu arquivo PHP
+        $.ajax({
+            url: 'consultaUsers.php',
+            type: 'GET',
+            data: { pagina: pagina, limit: limite },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === "success") {
+                    const dados = response.dados;
+                    const pag = response.paginacao;
+                    
+                    // 1. Atualizar contadores
+                    $('#total-geral').text(response.total_geral_usuarios);
+                    console.log(dados)
+                    // $('#pagina-atual').text(pag.pagina_atual);
+                    // $('#info-paginas').text(`Exibindo página ${pag.pagina_atual} de ${pag.total_paginas}`);
+                    // paginaAtual = pag.pagina_atual;
+
+                    // 2. Criar cabeçalho dinâmico (apenas na primeira carga ou se mudar)
+                //     if (dados.length > 0) {
+                //         let colunas = Object.keys(dados[0]);
+                //         let headHtml = '<tr>';
+                //         colunas.forEach(col => {
+                //             headHtml += `<th class="text-capitalize">${col.replace('_', ' ')}</th>`;
+                //         });
+                //         headHtml += '</tr>';
+                //         $('#tabela-head').html(headHtml);
+
+                //         // 3. Preencher corpo da tabela
+                //         let corpoHtml = '';
+                //         dados.forEach(user => {
+                //             corpoHtml += '<tr>';
+                //             colunas.forEach(col => {
+                //                 corpoHtml += `<td>${user[col] !== null ? user[col] : ''}</td>`;
+                //             });
+                //             corpoHtml += '</tr>';
+                //         });
+                //         $('#tabela-corpo').html(corpoHtml);
+                //     } else {
+                //         $('#tabela-corpo').html('<tr><td colspan="100%" class="text-center">Nenhum registro encontrado.</td></tr>');
+                //     }
+
+                //     // 4. Lógica dos botões Próximo/Anterior
+                //     $('#btn-prev').toggleClass('disabled', !pag.tem_anterior).find('a').data('page', pag.pagina_atual - 1);
+                //     $('#btn-next').toggleClass('disabled', !pag.tem_proxima).find('a').data('page', pag.pagina_atual + 1);
+
+                // } else {
+                //     alert("Erro do servidor: " + response.message);
+                // }
+}
+            },
+            error: function() {
+                $('#tabela-corpo').html('<tr><td colspan="100%" class="text-center text-danger">Erro ao conectar com o backend.</td></tr>');
+            }
+        });
+    }
+
+    // Evento de clique nos botões de paginação
+    $('.page-link').on('click', function(e) {
+        e.preventDefault();
+        let p = $(this).data('page');
+        if (p) carregarDados(p, $('#select-limit').val());
+    });
+
+    // Evento de mudança no limite de registros
+    $('#select-limit').on('change', function() {
+        carregarDados(1, $(this).val());
+    });
+
+    // Carga inicial
+    carregarDados(1, 10);

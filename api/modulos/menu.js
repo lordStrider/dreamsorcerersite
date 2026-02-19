@@ -25,7 +25,8 @@ export const mainMenu = ()=> {
     navLinks.forEach( link => {
         link.addEventListener("click",(e)=> {
             console.log(e.currentTarget.innerText)
-            //router()
+            let rota = e.currentTarget.innerText;
+            router(rota)
         })
     });
     
