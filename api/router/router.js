@@ -1,5 +1,6 @@
 import { templateHome } from "../pages/templateHome.js";
 import { templateUsers } from "../pages/templateUsers.js";
+import { templateAdmin } from "../pages/templateAdmin.js";
 export const router = (_rota)=> {
   //const http = constantes.url;
   //const token = localStorage.getItem("access_token");
@@ -11,8 +12,8 @@ export const router = (_rota)=> {
         case 'Usuários':
           templateUsers()
           break;
-        case 'Transações':
-          transacoes(token,http);
+        case 'Dashboard':
+          templateAdmin()
           break;
         case 'Comissões':
           comissoes(token,http);

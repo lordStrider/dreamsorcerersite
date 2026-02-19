@@ -4,8 +4,19 @@
     export const consultaUsers = (pagina = 1, limite = 10)=> {
         let paginaAtual = 1;
         // Altere 'seu_arquivo.php' para o nome real do seu arquivo PHP
+        const userRow = (_dados)=> {
+            let myRow =null;
+            _dados.forEach( data => {
+                myRow +=`
+                <tr>
+                    <td>${data.usuario}</td>
+                    <td>${data.email}</td>
+                    <td><span class="badge bg-success">Ativo</span></td>
+                </tr>`
+            });
+        }
         $.ajax({
-            url: 'consultaUsers.php',
+            url: 'https://dreamsorcererstudios.com.br/api/consultaUsers.php',
             type: 'GET',
             data: { pagina: pagina, limit: limite },
             dataType: 'json',
@@ -17,6 +28,7 @@
                     // 1. Atualizar contadores
                     $('#total-geral').text(response.total_geral_usuarios);
                     console.log(dados)
+                    userRow(dados)
                     // $('#pagina-atual').text(pag.pagina_atual);
                     // $('#info-paginas').text(`Exibindo página ${pag.pagina_atual} de ${pag.total_paginas}`);
                     // paginaAtual = pag.pagina_atual;
@@ -58,9 +70,7 @@
                 $('#tabela-corpo').html('<tr><td colspan="100%" class="text-center text-danger">Erro ao conectar com o backend.</td></tr>');
             }
         });
-    }
-
-    // Evento de clique nos botões de paginação
+        // Evento de clique nos botões de paginação
     $('.page-link').on('click', function(e) {
         e.preventDefault();
         let p = $(this).data('page');
@@ -71,6 +81,6 @@
     $('#select-limit').on('change', function() {
         carregarDados(1, $(this).val());
     });
+    }
 
-    // Carga inicial
-    consultaUsers(1, 10);
+    
