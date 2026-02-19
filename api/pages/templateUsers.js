@@ -76,7 +76,7 @@ export const templateUsers = (_usuario)=> {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="user-list">
             <tr>
               <td>Ana Silva</td>
               <td>ana@email.com</td>

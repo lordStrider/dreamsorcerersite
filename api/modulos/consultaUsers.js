@@ -5,6 +5,7 @@
         let paginaAtual = 1;
         // Altere 'seu_arquivo.php' para o nome real do seu arquivo PHP
         const userRow = (_dados)=> {
+            const listagem = document.querySelector(".user-list");
             let myRow =null;
             _dados.forEach( data => {
                 myRow +=`
@@ -14,9 +15,10 @@
                     <td><span class="badge bg-success">Ativo</span></td>
                 </tr>`
             });
+            listagem.innerHTML = myRow;
         }
         $.ajax({
-            url: 'https://dreamsorcererstudios.com.br/api/consultaUsers.php',
+            url: 'consultaUsers.php',
             type: 'GET',
             data: { pagina: pagina, limit: limite },
             dataType: 'json',
