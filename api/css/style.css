@@ -33,7 +33,9 @@ body {
     font-size: 1.2em;
     text-transform: uppercase;
 }
-
+ .card-form {
+        margin-bottom: 10px;
+    }
 @media screen and (max-width: 600px) {
     body {
         position: fixed;
@@ -124,7 +126,11 @@ body {
             "topbar"
             "content";
     }
-
+    .content {
+    grid-area: content;
+    padding: 0px;
+    background-color: var(--bg-login-first);
+}
     .dropdown-menu {
         background-color: var(--bg-bars);
         width: 100vw;

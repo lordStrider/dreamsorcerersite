@@ -30,7 +30,7 @@ try {
     $totalPaginas = ceil($totalUsuarios / $itensPorPagina);
 
     // 4. Consulta Principal (Busca todas as colunas da página atual)
-    $sql = "SELECT * FROM usuarios LIMIT :limit OFFSET :offset";
+    $sql = "SELECT * FROM Usuarios LIMIT :limit OFFSET :offset";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':limit', $itensPorPagina, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
