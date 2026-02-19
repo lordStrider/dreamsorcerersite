@@ -1,7 +1,7 @@
 
 
     // Função para carregar os dados via AJAX
-    export const carregarDados = (pagina = 1, limite = 10)=> {
+    export const consultaUsers = (pagina = 1, limite = 10)=> {
         let paginaAtual = 1;
         // Altere 'seu_arquivo.php' para o nome real do seu arquivo PHP
         $.ajax({
@@ -73,4 +73,4 @@
     });
 
     // Carga inicial
-    carregarDados(1, 10);
+    consultaUsers(1, 10);

@@ -24,7 +24,7 @@ try {
     $offset = ($paginaAtual - 1) * $itensPorPagina;
 
     // 3. Consulta para contar o total ABSOLUTO de usuários no banco
-    $totalUsuarios = $conn->query("SELECT COUNT(*) FROM usuarios")->fetchColumn();
+    $totalUsuarios = $conn->query("SELECT COUNT(*) FROM Usuarios")->fetchColumn();
     
     // Calcula o total de páginas baseado no limite escolhido
     $totalPaginas = ceil($totalUsuarios / $itensPorPagina);

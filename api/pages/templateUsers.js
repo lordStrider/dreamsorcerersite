@@ -1,6 +1,6 @@
 import { temaplatePush } from "../modulos/templatePush.js";
 import { mainMenu,adminMenu } from "../modulos/menu.js";
-import { carregarDados } from "../modulos/consultaUsers.js";
+import { consultaUsers } from "../modulos/consultaUsers.js";
 export const templateUsers = (_usuario)=> {
     _usuario = "Admin"
     const nomeProjects = "BibliaQuiz"
@@ -117,4 +117,5 @@ export const templateUsers = (_usuario)=> {
     //temaplatePush()
     mainMenu()
     adminMenu()
+    consultaUsers()
 }
