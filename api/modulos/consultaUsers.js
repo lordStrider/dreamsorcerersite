@@ -6,7 +6,7 @@
         // Altere 'seu_arquivo.php' para o nome real do seu arquivo PHP
         const userRow = (_dados)=> {
             const listagem = document.querySelector(".user-list");
-            let myRow =null;
+            let myRow;
             _dados.forEach( data => {
                 myRow +=`
                 <tr>
