@@ -16,7 +16,7 @@ export const createPush = () => {
             corpo: corpo.value,
             imagem: imagem.value
         }
-        if (!dados.titulo && !dados.corpo) {
+        if (dados.titulo && dados.corpo) {
 
             $.ajax({
                 url: 'enviar_massa.php', // Nome do arquivo PHP que criamos
