@@ -1,6 +1,7 @@
 
 
 // Função para carregar os dados via AJAX
+const url = "https://api.dreamsorcererstudios.com.br/"
 export const consultaUsers = (pagina = 1, limite = 10) => {
     let paginaAtual = 1;
     // Altere 'seu_arquivo.php' para o nome real do seu arquivo PHP
@@ -16,10 +17,11 @@ export const consultaUsers = (pagina = 1, limite = 10) => {
                     <td><div class="btn btn-success" data-id="${data.id}">Acessar</span></td>
                 </tr>`
         });
-        listagem.innerHTML = myRow
+        listagem.innerHTML = myRow;
+        perfilData();
     }
     $.ajax({
-        url: 'consultaUsers.php',
+        url: `${url}consultaUsers.php`,
         type: 'GET',
         data: { pagina: pagina, limit: limite },
         dataType: 'json',
@@ -85,13 +87,13 @@ export const consultaUsers = (pagina = 1, limite = 10) => {
         carregarDados(1, $(this).val());
     });
 }
-export const perfilData = ()=> {
+const perfilData = ()=> {
     const btnPerfis = document.querySelectorAll(".btn-success");
     btnPerfis.forEach( perfil => {
         perfil.addEventListener("click", (e)=> {
             const idUsuario = e.currentTarget.dataset.id;
             $.ajax({
-        url: 'buscar_usuario.php',
+        url: `${url}buscar_usuario.php`,
         type: 'GET',
         data: { id: idUsuario },
         success: function(response) {
