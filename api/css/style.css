@@ -234,3 +234,6 @@ body {
 #myLoading {
     display: none;
 }
+td .btn-success {
+    float: right;
+}

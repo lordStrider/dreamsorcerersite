@@ -74,6 +74,7 @@ export const templateUsers = (_usuario)=> {
               <th>Nome</th>
               <th>Email</th>
               <th>Status</th>
+              <th>Perfil</th>
             </tr>
           </thead>
           <tbody class="user-list">
